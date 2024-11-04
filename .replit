@@ -1,0 +1,27 @@
+run = "npm run dev"
+hidden = [".config", "package-lock.json", "tsconfig.json"]
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+deploymentTarget = "static"
+ignorePorts = false
+build = ["sh", "-c", "npm run build"]
+publicDir = "public"
+
+[[ports]]
+localPort = 4173
+externalPort = 80
+exposeLocalhost = true
+
+[[ports]]
+localPort = 4175
+externalPort = 3000
+exposeLocalhost = true
+
+[[ports]]
+localPort = 5173
+externalPort = 5000
+exposeLocalhost = true
