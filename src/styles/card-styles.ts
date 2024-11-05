@@ -1,11 +1,11 @@
 import { css } from "lit";
 
-export const modalStyles = css`
+export const cardStyles = css`
   :host {
     z-index: var(--z-index, 1000);
   }
 
-  .modal-backdrop {
+  .card-backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -14,7 +14,7 @@ export const modalStyles = css`
     background-color: rgba(0, 0, 0, 0.5);
   }
 
-  .content.modal {
+  .content.card {
     background-color: var(--background-color, #ffffff);
     border-radius: 8px;
     box-shadow: 0 4px 20px var(--shadow-color, rgba(0, 0, 0, 0.1));
@@ -25,7 +25,7 @@ export const modalStyles = css`
     flex-direction: column;
   }
 
-  .modal-header {
+  .card-header {
     padding: 16px;
     background-color: var(--primary-color, #007bff);
     color: white;
@@ -36,17 +36,17 @@ export const modalStyles = css`
     align-items: center;
   }
 
-  .modal-header h3 {
+  .card-header h3 {
     margin: 0;
     font-size: 20px;
   }
 
-  .modal-body {
+  .card-body {
     padding: 20px;
     overflow-y: auto;
   }
 
-  .modal-footer {
+  .card-footer {
     padding: 16px;
     background-color: var(--background-color, #ffffff);
     border-top: 1px solid var(--border-color, #e0e0e0);
@@ -55,7 +55,7 @@ export const modalStyles = css`
     border-bottom-right-radius: 8px;
   }
 
-  .modal-footer button {
+  .card-footer button {
     margin-left: 8px;
     padding: 8px 16px;
     background-color: var(--primary-color, #007bff);
@@ -65,7 +65,7 @@ export const modalStyles = css`
     cursor: pointer;
   }
 
-  .modal-footer button:hover {
+  .card-footer button:hover {
     background-color: var(--secondary-color, #6c757d);
   }
 

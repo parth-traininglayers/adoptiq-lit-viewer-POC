@@ -1,7 +1,6 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { html } from "lit";
 import { BaseDisplay } from "./BaseDisplay";
-import { modalStyles } from "../styles/modal-styles";
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { createDefaultConfig, DisplayConfig } from "../config/display-config";
 import {
@@ -13,10 +12,11 @@ import {
   autoPlacement,
 } from '@floating-ui/dom';
 import { Pin } from "../interface/pin";
+import { cardStyles } from "../styles/card-styles";
 
-@customElement("modal-display")
-export class ModalDisplay extends BaseDisplay {
-  static styles = [...BaseDisplay.styles, modalStyles];
+@customElement("card-display")
+export class CardDisplay extends BaseDisplay {
+  static styles = [...BaseDisplay.styles, cardStyles];
 
   @query('.trigger') triggerEl!: HTMLElement;
   @query('.content') contentEl!: HTMLElement;
@@ -42,7 +42,7 @@ export class ModalDisplay extends BaseDisplay {
 
   connectedCallback() {
     super.connectedCallback();
-    console.log("Modal connected", this.config);
+    console.log("card connected", this.config);
   }
 
   protected firstUpdated() {
@@ -139,8 +139,8 @@ export class ModalDisplay extends BaseDisplay {
     if (this.config.dismissal.includes('clickOutside')) {
       this.clickOutsideHandler = (event: MouseEvent) => {
         const target = event.target as HTMLElement;
-        const modal = this.shadowRoot?.querySelector('.modal-content');
-        if (modal && !modal.contains(target) && this.isVisible) {
+        const card = this.shadowRoot?.querySelector('.card-content');
+        if (card && !card.contains(target) && this.isVisible) {
           this.hide();
         }
       };
@@ -182,7 +182,7 @@ export class ModalDisplay extends BaseDisplay {
 
   updated(changedProperties: Map<string, any>) {
     super.updated(changedProperties);
-    console.log("Modal updated", changedProperties);
+    console.log("card updated", changedProperties);
   }
 
 
@@ -228,16 +228,16 @@ export class ModalDisplay extends BaseDisplay {
       </div>
       ${this.isVisible
         ? html`
-            <div class="modal-backdrop" @click=${this.hide}></div>
-            <div class="content modal" 
+            <div class="card-backdrop" @click=${this.hide}></div>
+            <div class="content card" 
                  ?data-show=${this.isVisible}
                  @mouseover=${this.handleContentMouseOver}
                  @mouseleave=${this.handleContentMouseLeave}>
               ${this.config.dismissal.includes('closeButton')
             ? html`<button class="close-btn" @click=${this.hide}>&times;</button>`
             : ''}
-              <div class="modal-body">${unsafeHTML(this.data?.content)}</div>
-              <div class="modal-footer">
+              <div class="card-body">${unsafeHTML(this.data?.content)}</div>
+              <div class="card-footer">
                 ${this.data && this.data.buttons && this.data.buttons.map(
               (button) => html`
                     <button @click=${button.action}>${button.text}</button>

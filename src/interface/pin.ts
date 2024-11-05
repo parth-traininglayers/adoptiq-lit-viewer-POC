@@ -1,13 +1,16 @@
+import { DismissalStrategy } from "../main";
+
 export type Pin = {
   id: string;
   selector: {
     cssSelector: string;
-    textContent: boolean;
+    textContent: boolean; // not used
   };
-  title: string;
   content: string;
+  buttons?: Array<{text: string, action: Function}> // only for modals
+  buttonText ?: string;
   triggerType: string;
-  dismissType: string;
+  dismissType: DismissalStrategy[];
   width: number;
   displayType: string;
   pinPlacement: {

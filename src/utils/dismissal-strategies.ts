@@ -21,17 +21,6 @@ export function setupDismissal(
           );
         }
         break;
-      case "click":
-        const clickHandler = (e: Event) => {
-          if (!(e.target as HTMLElement).closest(".content")) {
-            component.hide();
-          }
-        };
-        document.addEventListener("click", clickHandler);
-        cleanupFunctions.push(() =>
-          document.removeEventListener("click", clickHandler),
-        );
-        break;
       case "clickOutside":
         const clickOutsideHandler = (e: Event) => {
           if (!component.shadowRoot?.contains(e.target as Node)) {

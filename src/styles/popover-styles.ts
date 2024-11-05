@@ -59,6 +59,5 @@ export const popoverStyles = css`
     background: inherit;
     visibility: visible;
     content: "";
-    transform: rotate(45deg);
   }
 `;

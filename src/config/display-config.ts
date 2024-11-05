@@ -4,9 +4,11 @@ export type DisplayType = "tooltip" | "popover" | "card" | "modal";
 export type InvocationStrategy = "hover" | "click" | "focus";
 export type DismissalStrategy =
   | "mouseleave"
-  | "click"
   | "clickOutside"
-  | "escape";
+  | "escape"
+  | "closeButton"
+  | "click"
+  | "autoClose";
 
 export interface DisplayConfig {
   type: DisplayType;
@@ -35,9 +37,9 @@ export interface DisplayConfig {
 export function createDefaultConfig(): DisplayConfig {
   return {
     type: "popover",
-    alignment: "top",
+    alignment: "right",
     invocation: "click",
-    dismissal: ["mouseleave"],
+    dismissal: ["mouseleave", "clickOutside", "escape"],
     enableCaret: true,
     zIndex: 1000,
     maxWidth: "300px",
